@@ -78,6 +78,12 @@ Add it as a block in a personal layout:
 
 The statusLine hook prints nothing; it saves `rate_limits` to `<profile>/state/herdr-usage.json` (using `CLAUDE_CONFIG_DIR` when set). Values refresh whenever a Claude session gets a response. The mod shows the active account from `~/.claude/state/herdr-accounts.json` (see [herdr-claude-accounts](https://github.com/gabriel-mend/herdr-claude-accounts)), or the main profile if that file is absent.
 
+## Author
+
+<a href="https://www.linkedin.com/in/gabriel-mendonca-pereira/"><img src="https://github.com/gabriel-mend.png?size=200" width="100" alt="Gabriel Mendonça Pereira on LinkedIn"></a>
+
+**[Gabriel Mendonça Pereira](https://www.linkedin.com/in/gabriel-mendonca-pereira/)**
+
 ## License
 
 [MIT](LICENSE) © 2026 [Gabriel Mendonça Pereira](https://github.com/gabriel-mend) · [LinkedIn](https://www.linkedin.com/in/gabriel-mendonca-pereira/)
