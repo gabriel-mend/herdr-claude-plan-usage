@@ -1,7 +1,7 @@
 // Fake `gpui-kit`, `gpui-base` and `herdr` modules: elements are plain trees the tests can search and click.
 export const fake = {};
 export function reset(over = {}) {
-  Object.assign(fake, { calls: [], agents: [], terminals: [], props: null, hc: { code: 0 }, exec: { code: 0, stdout: "{}" } }, over);
+  Object.assign(fake, { calls: [], agents: [], terminals: [], props: null, layout: null, shared: {}, hc: { code: 0 }, exec: { code: 0, stdout: "{}" } }, over);
 }
 reset();
 
@@ -36,3 +36,6 @@ export const checking = () => true;
 export const run = (...args) => { fake.calls.push(["run", ...args]); };
 export const hc = (args) => { fake.calls.push(["hc", args]); return Promise.resolve(fake.hc); };
 export const exec = (cmd, args) => { fake.calls.push(["exec", cmd, args]); return Promise.resolve(fake.exec); };
+export const layout = () => fake.layout;
+export const shared = (key) => fake.shared[key];
+export const setShared = (key, value) => { fake.shared[key] = value; };
