@@ -1,6 +1,6 @@
 # herdr-claude-plan-usage
 
-A [Herdr.app](https://herdr.app) sidebar mod showing your **Claude plan rate-limit usage** (5h and 7d windows, with reset countdown). Claude Pro/Max only.
+A Herdr.app sidebar mod showing your **Claude plan rate-limit usage** (5h and 7d windows, with reset countdown). Claude Pro/Max only.
 
 ## Install
 
