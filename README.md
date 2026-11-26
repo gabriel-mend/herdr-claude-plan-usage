@@ -49,7 +49,7 @@ Then add the blocks to a personal layout. Shipped layouts are read-only, so clon
 ```json
 { "id": "claude-context",    "type": "block", "size": { "weight": 1 }, "min": 90, "content": { "mod": "claude-context" } },
 { "id": "claude-accounts",   "type": "block", "size": { "px": 150 },  "min": 60, "content": { "mod": "claude-accounts" } },
-{ "id": "claude-plan-usage", "type": "block", "size": { "px": 78 },   "min": 60, "content": { "mod": "claude-plan-usage" } }
+{ "id": "claude-plan-usage", "type": "block", "size": { "px": 96 },   "min": 60, "content": { "mod": "claude-plan-usage" } }
 ```
 
 Switch to it with `herdr-app do layout.switch --name <your-layout>`. Changing to a layout without these blocks hides the mods.
@@ -71,12 +71,23 @@ Add to `~/.claude/settings.json`:
 Add it as a block in a personal layout:
 
 ```json
-{ "id": "claude-plan-usage", "type": "block", "size": { "px": 78 }, "min": 60, "content": { "mod": "claude-plan-usage" } }
+{ "id": "claude-plan-usage", "type": "block", "size": { "px": 96 }, "min": 60, "content": { "mod": "claude-plan-usage" } }
 ```
 
 ## How it works
 
 The statusLine hook prints nothing; it saves `rate_limits` to `<profile>/state/herdr-usage.json` (using `CLAUDE_CONFIG_DIR` when set). Values refresh whenever a Claude session gets a response. The mod shows the active account from `~/.claude/state/herdr-accounts.json` (see [herdr-claude-accounts](https://github.com/gabriel-mend/herdr-claude-accounts)), or the main profile if that file is absent.
+
+## Tests
+
+No dependencies to install: Python 3 (`unittest`) and Node 20.6+ (`node --test`). From the repository folder:
+
+```sh
+python3 -m unittest discover -s tests
+node --test tests/mod.test.mjs
+```
+
+The Node tests load `main.js` with fake Herdr modules (`tests/stubs.mjs`) and check what is shown and what each click does. They don't test how it looks; for that, run `herdr-app check` and look at the app.
 
 ## Author
 

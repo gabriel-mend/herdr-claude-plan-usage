@@ -35,19 +35,21 @@ export default class ClaudePlanUsage extends View {
       if (!w) return null;
       const p = Math.min(100, w.used_percentage);
       const c = p < 60 ? t.done : p < 85 ? t.blocked : t.working;
-      return h_flex().gap(8).items_center()
-        .child(div().w(22).text_size(11).text_color(t.dim).child(label))
-        .child(div().flex_1().h(5).rounded(3).bg(t.border).child(div().h(5).rounded(3).bg(c).w(`${p}%`)))
-        .child(div().text_size(11).text_color(t.muted).child(`${p.toFixed(0)}%  ·  ${until(w.resets_at)}`));
+      return h_flex().h(20).gap(9).items_center()
+        .child(div().w(18).flex_none().text_size(11).text_color(t.muted).child(label))
+        .child(div().flex_1().h(3).rounded(2).bg(t.border).child(div().h(3).rounded(2).bg(c).w(`${p}%`)))
+        .child(div().flex_none().text_size(11).text_color(t.dim).child(`${p.toFixed(0)}%  ·  ${until(w.resets_at)}`));
     };
     const rows = [line("5h", u.five_hour), line("7d", u.seven_day)].filter(Boolean);
-    return v_flex().gap(4).px(12).py(8)
-      .child(div().text_size(11).text_color(t.dim).child("Plan usage"))
-      .children(rows.length ? rows : [div().text_size(11).text_color(t.dim).child("waiting for a Claude response…")]);
+    return v_flex().px(16).children(rows.length ? rows : [div().text_size(11).text_color(t.dim).child("Waiting for a Claude response…")]);
   }
 
   render(cx) {
-    return v_flex().size_full().text_size(13).child(this.usageView(theme()))
-      .when(this.error, (el) => el.child(div().text_size(11).text_color(theme().working).child(this.error)));
+    const t = theme();
+    return v_flex().size_full().min_h(0).bg(t.chrome).border_t(1).border_color(t.border).text_size(13)
+      .child(h_flex().px(16).h(41).pt(14).pb(5).flex_none().items_center().justify_between()
+        .child(div().text_size(11.5).font_medium().text_color(t.dim).child("Plan usage")))
+      .child(this.usageView(t))
+      .when(this.error, (el) => el.child(div().px(16).text_size(11).text_color(t.working).child(this.error)));
   }
 }
